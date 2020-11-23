@@ -31,7 +31,7 @@ async function handleEvent(req, res) {
 
   const promises1 = events.map(event => repalyNames(event, names))
 
-  console.log('come on handler')
+  console.log('come on handler', promises1)
   // const events = req.body.events;
   // const promises2 = events.map(event => replay(event))
 
@@ -39,15 +39,11 @@ async function handleEvent(req, res) {
   // Promise.all(promises2).then(console.log("pass2"));
 }
 
-async function repalyNames(event, names) {
-  return names.map(name => client.replyMessage(event.replyToken, {
-    type: "text",
-    text: name
-  }))
-  // return client.replyMessage(event.replyToken, {
-  //   type: "text",
-  //   text: name
-  // })
+  function repalyNames(event, names) {
+    return names.map(name => client.replyMessage(event.replyToken, {
+      type: "text",
+      text: name
+    }))
 }
 
 async function replay(event) {
