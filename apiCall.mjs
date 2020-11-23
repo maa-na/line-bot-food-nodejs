@@ -7,13 +7,12 @@ async function getGourmetSearch() {
   console.log(hoge)
 
   const requestOptions = {
-    url: encodeURI(`${GOURMET_SEARCH_API}?key=${process.env.HOTPEPPER_API_KEY}&address=${hoge}`),
+    url: encodeURI(`${GOURMET_SEARCH_API}?key=${process.env.HOTPEPPER_API_KEY}&address=${hoge}&format=json`),
     method: "GET",
   }
   console.log(requestOptions)
   return new Promise(function (resolve, reject) {
     request(requestOptions, function (error, res, body) {
-      console.log('res1', res)
       if (!error && res.statusCode == 200) {
         resolve(body);
       } else {
