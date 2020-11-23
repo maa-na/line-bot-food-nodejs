@@ -13,6 +13,7 @@ async function getGourmetSearch() {
   console.log(requestOptions)
   return new Promise(function (resolve, reject) {
     request(requestOptions, function (error, res, body) {
+      console.log('res1', res)
       if (!error && res.statusCode == 200) {
         resolve(body);
       } else {
