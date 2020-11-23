@@ -29,13 +29,13 @@ async function handleEvent(req, res) {
 
   const names = apiRes.results.shop.map(val => val.name)
 
-  const promises1 = await Promise.all(events.map(async(event) => await repalyNames(event, names)))
+  const promises1 = events.map(event => repalyNames(event, names))
 
   console.log('come on handler', promises1)
   // const events = req.body.events;
   // const promises2 = events.map(event => replay(event))
 
-  // Promise.all(promises1).then(console.log("pass1"));
+  Promise.all(promises1).then(console.log("pass1"));
   // Promise.all(promises2).then(console.log("pass2"));
 }
 
