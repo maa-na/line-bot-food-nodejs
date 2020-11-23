@@ -22,6 +22,8 @@ app.post('/webhook', line.middleware(config), (req, res) => handleEvent(req, res
 const client = new line.Client(config);
 
 async function handleEvent(req, res) {
+  res.status(200).end();
+
   console.log('hoge')
   const events = req.body.events;
   const promises = events.map(event => replay(event))
