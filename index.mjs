@@ -8,9 +8,11 @@ dotenv.config()
 const PORT = process.env.PORT || 3008;
 
 const config = {
-    channelSecret: process.env.CHANNEL_SECRET,
-    channelAccessToken: process.env.CHANNEL_ACCESS_TOKEN
+  channelSecret: process.env.CHANNEL_SECRET,
+  channelAccessToken: process.env.CHANNEL_ACCESS_TOKEN
 };
+
+console.log('config', config)
 
 express()
   .get('/', (req, res) => res.send('Hello LINE BOT!(GET)')) //ブラウザ確認用(無くても問題ない)
