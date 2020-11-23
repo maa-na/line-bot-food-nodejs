@@ -22,7 +22,7 @@ const client = new line.Client(config);
 async function handleEvent(req, res) {
   res.status(200).end();
 
-  const res = await getGourmetSearch()
+  const apiRes = await getGourmetSearch()
   console.log('res', res)
 
   console.log('come on handler')
