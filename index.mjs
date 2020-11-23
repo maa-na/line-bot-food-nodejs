@@ -29,7 +29,7 @@ async function handleEvent(req, res) {
 
   const names = apiRes.results.shop.map(val => val.name)
 
-  const promises1 = events.map(event => repalyNames(event, names))
+  const promises1 = await Promise.all(events.map(async(event) => await repalyNames(event, names)))
 
   console.log('come on handler', promises1)
   // const events = req.body.events;
