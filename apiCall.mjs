@@ -4,7 +4,10 @@ const GOURMET_SEARCH_API = 'http://webservice.recruit.co.jp/hotpepper/gourmet/v1
 
 async function getGourmetSearch() {
   const hoge = '東京都府中市'
+  console.log(hoge)
   request(`${GOURMET_SEARCH_API}?key=${process.env.HOTPEPPER_API_KEY}&address=${hoge}`, function (error, response, body) {
+    console.log('error', error)
+    console.log('response', response)
     if (!error && response.statusCode == 200) {
       console.log(body) // Print the google web page.
     }
