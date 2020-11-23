@@ -22,12 +22,14 @@ const client = new line.Client(config);
 async function handleEvent(req, res) {
   res.status(200).end();
 
+  const events = req.body.events;
+
   const apiRes = await getGourmetSearch()
   console.log('res', apiRes.results)
 
   const names = apiRes.results.shop.map(val => val.name)
 
-  const promises1 = names.map(name => repalyNames(name))
+  const promises1 = events.map(event => repalyNames(event, names))
 
   console.log('come on handler')
   // const events = req.body.events;
@@ -37,11 +39,15 @@ async function handleEvent(req, res) {
   // Promise.all(promises2).then(console.log("pass2"));
 }
 
-async function repalyNames(name) {
-  return client.replyMessage(event.replyToken, {
+async function repalyNames(event, names) {
+  return names.map(name => client.replyMessage(event.replyToken, {
     type: "text",
     text: name
-  })
+  }))
+  // return client.replyMessage(event.replyToken, {
+  //   type: "text",
+  //   text: name
+  // })
 }
 
 async function replay(event) {
