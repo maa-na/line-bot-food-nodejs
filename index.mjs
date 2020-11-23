@@ -45,10 +45,14 @@ async function handleEvent(req, res) {
     //   type: "text",
     //   text: names
     // })
-    return names.map(name => client.replyMessage(event.replyToken, {
+    // return names.map(name => client.replyMessage(event.replyToken, {
+    //   type: "text",
+    //   text: name
+    // }))
+    await Promise.all(await names.map(async(name) => await client.replyMessage(event.replyToken, {
       type: "text",
       text: name
-    }))
+    })))
 }
 
 async function replay(event) {
