@@ -25,11 +25,23 @@ async function handleEvent(req, res) {
   const apiRes = await getGourmetSearch()
   console.log('res', apiRes)
 
+  const names = apiRes.map(val => val.name)
+
+  const promises1 = names.map(name => repalyNames(name))
+
   console.log('come on handler')
   const events = req.body.events;
-  const promises = events.map(event => replay(event))
+  const promises2 = events.map(event => replay(event))
 
-  Promise.all(promises).then(console.log("pass"));
+  Promise.all(promises).then(console.log("pass1"));
+  Promise.all(promises2).then(console.log("pass2"));
+}
+
+async function repalyNames(name) {
+  return client.replyMessage(event.replyToken, {
+    type: "text",
+    text: name
+  })
 }
 
 async function replay(event) {
