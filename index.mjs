@@ -28,6 +28,7 @@ async function handleEvent(req, res) {
   console.log('res', apiRes.results)
 
   const names = apiRes.results.shop.map(val => val.name)
+  console.log('names', names)
 
   const promises1 = events.map(event => repalyNames(event, names))
 
