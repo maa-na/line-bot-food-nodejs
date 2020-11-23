@@ -22,7 +22,8 @@ const client = new line.Client(config);
 async function handleEvent(req, res) {
   res.status(200).end();
 
-  await getGourmetSearch()
+  const res = await getGourmetSearch()
+  console.log('res', res)
 
   console.log('come on handler')
   const events = req.body.events;
