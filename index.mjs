@@ -45,14 +45,15 @@ async function handleEvent(req, res) {
     //   type: "text",
     //   text: names
     // })
-    // return names.map(name => client.replyMessage(event.replyToken, {
-    //   type: "text",
-    //   text: name
-    // }))
-    await Promise.all(names.map(async(name) => await client.replyMessage(event.replyToken, {
+    const requests = names.map(name => ({
       type: "text",
       text: name
-    }))).then(console.log('succsess!'))
+    }))
+    return client.replyMessage(event.replyToken, requests)
+    // await Promise.all(names.map(async(name) => await client.replyMessage(event.replyToken, {
+    //   type: "text",
+    //   text: name
+    // }))).then(console.log('succsess!'))
 }
 
 async function replay(event) {
