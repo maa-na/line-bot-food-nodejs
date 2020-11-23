@@ -25,7 +25,7 @@ async function handleEvent(req, res) {
   const apiRes = await getGourmetSearch()
   console.log('res', apiRes)
 
-  const names = apiRes.map(val => val.name)
+  const names = apiRes.results.shop.map(val => val.name)
 
   const promises1 = names.map(name => repalyNames(name))
 
