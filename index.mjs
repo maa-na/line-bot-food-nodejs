@@ -24,6 +24,7 @@ async function handleEvent(req, res) {
   const event = req.body.events[0];
 
   const textCheckRes = await textCheck(event)
+  console.log('textCheckRes', textCheckRes)
 
   if (textCheckRes) return
 
