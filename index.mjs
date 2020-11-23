@@ -42,6 +42,7 @@ async function handleEvent(req, res) {
 
 async function textCheck(event) {
   let returnText = null
+  console.log('event.message.text', event.message.text)
   switch (event.message.text) {
     case 'ジャンルから探す':
       returnText = 'ジャンルを入力してください。(例：お肉、お魚　など)'
