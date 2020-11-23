@@ -23,7 +23,7 @@ async function handleEvent(req, res) {
   res.status(200).end();
 
   const apiRes = await getGourmetSearch()
-  console.log('res', res)
+  console.log('res', apiRes)
 
   console.log('come on handler')
   const events = req.body.events;

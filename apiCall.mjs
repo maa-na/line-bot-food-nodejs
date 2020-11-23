@@ -10,6 +10,7 @@ async function getGourmetSearch() {
     url: `${GOURMET_SEARCH_API}?key=${process.env.HOTPEPPER_API_KEY}&address=${hoge}`,
     method: "GET",
   }
+  console.log(requestOptions)
   return new Promise(function (resolve, reject) {
     request(requestOptions, function (error, res, body) {
       if (!error && res.statusCode == 200) {
