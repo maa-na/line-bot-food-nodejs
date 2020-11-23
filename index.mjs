@@ -49,6 +49,7 @@ async function handleEvent(req, res) {
       type: "text",
       text: name
     }))
+    console.log(requests)
     return client.replyMessage(event.replyToken, requests)
     // await Promise.all(names.map(async(name) => await client.replyMessage(event.replyToken, {
     //   type: "text",
