@@ -7,7 +7,7 @@ async function getGourmetSearch() {
   console.log(hoge)
 
   const requestOptions = {
-    url: `${GOURMET_SEARCH_API}?key=${process.env.HOTPEPPER_API_KEY}&address=${hoge}`,
+    url: encodeURI(`${GOURMET_SEARCH_API}?key=${process.env.HOTPEPPER_API_KEY}&address=${hoge}`),
     method: "GET",
   }
   console.log(requestOptions)
