@@ -12,12 +12,12 @@ const config = {
     channelAccessToken: process.env.CHANNEL_ACCESS_TOKEN
 };
 
-const app = express();
-
-app.get('/', (req, res) => res.send('Hello LINE BOT!(GET)')) //ブラウザ確認用(無くても問題ない)
-app.get("/webhook", (req, res) => res.send('webhook ok(GET)')) // 追加
-app.post("/webhook", (req, res) => res.json({ test: "hook" })) // 追加
-app.post('/webhook', line.middleware(config), (req, res) => handleEvent(req, res))
+express()
+  .get('/', (req, res) => res.send('Hello LINE BOT!(GET)')) //ブラウザ確認用(無くても問題ない)
+  .get("/webhook", (req, res) => res.send('webhook ok(GET)')) // 追加
+  // .post("/webhook", (req, res) => res.json({ test: "hook" })) // 追加
+  .post('/webhook', line.middleware(config), (req, res) => handleEvent(req, res))
+  .listen(PORT, () => console.log(`Listening on ${PORT}`));
 
 const client = new line.Client(config);
 
@@ -40,5 +40,4 @@ async function replay(event) {
   })
 }
 
-app.listen(PORT);
 console.log(`Server running at ${PORT}`);
