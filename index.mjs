@@ -1,8 +1,7 @@
-'use strict';
-
 import express from 'express'
 import line from '@line/bot-sdk'
 import dotenv from 'dotenv'
+import { getGourmetSearch } from './apiCall.mjs'
 
 dotenv.config()
 const PORT = process.env.PORT || 3008;
@@ -12,12 +11,9 @@ const config = {
   channelAccessToken: process.env.CHANNEL_ACCESS_TOKEN
 };
 
-console.log('config', config)
-
 express()
-  .get('/', (req, res) => res.send('Hello LINE BOT!(GET)')) //ブラウザ確認用(無くても問題ない)
-  .get("/webhook", (req, res) => res.send('webhook ok(GET)')) // 追加
-  // .post("/webhook", (req, res) => res.json({ test: "hook" })) // 追加
+  .get('/', (req, res) => res.send('Hello LINE BOT!(GET)'))
+  .get("/webhook", (req, res) => res.send('webhook ok(GET)'))
   .post('/webhook', line.middleware(config), (req, res) => handleEvent(req, res))
   .listen(PORT, () => console.log(`Listening on ${PORT}`));
 
@@ -26,7 +22,9 @@ const client = new line.Client(config);
 async function handleEvent(req, res) {
   res.status(200).end();
 
-  console.log('hoge')
+  await getGourmetSearch()
+
+  console.log('come on handler')
   const events = req.body.events;
   const promises = events.map(event => replay(event))
 
@@ -41,5 +39,3 @@ async function replay(event) {
     text: `${profile.displayName}さん、今「${event.message.text}」って言いました？`
   })
 }
-
-console.log(`Server running at ${PORT}`);

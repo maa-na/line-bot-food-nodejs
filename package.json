@@ -5,12 +5,14 @@
   "repository": "https://github.com/maa-na/line-bot-food-nodejs.git",
   "author": "maa-na",
   "license": "MIT",
+  "type": "module",
   "scripts": {
     "start": "node index.mjs"
   },
   "dependencies": {
     "@line/bot-sdk": "^7.1.0",
     "dotenv": "^8.2.0",
-    "express": "^4.17.1"
+    "express": "^4.17.1",
+    "request": "^2.88.2"
   }
 }
