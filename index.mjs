@@ -51,7 +51,10 @@ async function textCheck(event) {
       break
   }
   if (!returnText) return false 
-  Promise.all(client.replyMessage(event.replyToken, requests))
+  Promise.all(client.replyMessage(event.replyToken, {
+    type: "text",
+    text: returnText
+  }))
     .then(() => {
       console.log("first pass ok")
       return true
