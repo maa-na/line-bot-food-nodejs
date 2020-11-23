@@ -1,15 +1,16 @@
 {
   "name": "line-bot-food-nodejs",
   "version": "1.0.0",
-  "main": "index.js",
+  "main": "index.mjs",
   "repository": "https://github.com/maa-na/line-bot-food-nodejs.git",
   "author": "maa-na",
   "license": "MIT",
   "scripts": {
-    "start": "node index.js"
+    "start": "node index.mjs"
   },
   "dependencies": {
     "@line/bot-sdk": "^7.1.0",
+    "dotenv": "^8.2.0",
     "express": "^4.17.1"
   }
 }
