@@ -50,6 +50,7 @@ async function textCheck(event) {
       returnText = '入力された時間から１時間半以上滞在できるお店を紹介します。時間を入力してください。(今から、２１時、１５分後　など)'
       break
   }
+  console.log('returnText', returnText)
   if (!returnText) return false 
   Promise.all(client.replyMessage(event.replyToken, {
     type: "text",
