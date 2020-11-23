@@ -23,7 +23,7 @@ async function handleEvent(req, res) {
   res.status(200).end();
 
   const apiRes = await getGourmetSearch()
-  console.log('res', apiRes)
+  console.log('res', apiRes.results)
 
   const names = apiRes.results.shop.map(val => val.name)
 
