@@ -9,6 +9,7 @@ async function getGourmetSearch() {
   const requestOptions = {
     url: encodeURI(`${GOURMET_SEARCH_API}?key=${process.env.HOTPEPPER_API_KEY}&address=${hoge}&format=json`),
     method: "GET",
+    json: true
   }
   console.log(requestOptions)
   return new Promise(function (resolve, reject) {

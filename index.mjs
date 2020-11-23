@@ -33,7 +33,7 @@ async function handleEvent(req, res) {
   const events = req.body.events;
   const promises2 = events.map(event => replay(event))
 
-  Promise.all(promises).then(console.log("pass1"));
+  Promise.all(promises1).then(console.log("pass1"));
   Promise.all(promises2).then(console.log("pass2"));
 }
 
