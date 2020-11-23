@@ -21,8 +21,11 @@ const client = new line.Client(config);
 
 async function handleEvent(req, res) {
   res.status(200).end();
+  const event = req.body.events[0];
 
-  const events = req.body.events;
+  const textCheckRes = await textCheck(event)
+
+  if (textCheckRes) return
 
   const apiRes = await getGourmetSearch()
   console.log('res', apiRes.results)
@@ -30,38 +33,35 @@ async function handleEvent(req, res) {
   const names = apiRes.results.shop.map(val => val.name)
   console.log('names', names)
 
-  const promises1 = events.map(event => repalyNames(event, names))
+  const promises1 = repalyNames(event, names)
 
   console.log('come on handler', promises1)
-  // const events = req.body.events;
-  // const promises2 = events.map(event => replay(event))
 
   Promise.all(promises1).then(console.log("pass1"));
-  // Promise.all(promises2).then(console.log("pass2"));
 }
 
-  async function repalyNames(event, names) {
-    // return client.replyMessage(event.replyToken, {
-    //   type: "text",
-    //   text: names
-    // })
-    const requests = names.map(name => ({
-      type: "text",
-      text: name
-    }))
-    console.log(requests)
-    return client.replyMessage(event.replyToken, requests)
-    // await Promise.all(names.map(async(name) => await client.replyMessage(event.replyToken, {
-    //   type: "text",
-    //   text: name
-    // }))).then(console.log('succsess!'))
+async function textCheck(event) {
+  let returnText = null
+  switch (event.message.text) {
+    case 'ジャンルから探す':
+      returnText = 'ジャンルを入力してください。(例：お肉、お魚　など)'
+      break
+    case 'このあと行きたい':
+      returnText = '入力された時間から１時間半以上滞在できるお店を紹介します。時間を入力してください。(今から、２１時、１５分後　など)'
+      break
+  }
+  if (!returnText) return false 
+  Promise.all(client.replyMessage(event.replyToken, requests))
+    .then(() => {
+      console.log("first pass ok")
+      return true
+    });
 }
 
-async function replay(event) {
-  const profile =  await client.getProfile(event.source.userId);
-
-  return client.replyMessage(event.replyToken, {
+async function repalyNames(event, names) {
+  const requests = names.map(name => ({
     type: "text",
-    text: `${profile.displayName}さん、今「${event.message.text}」って言いました？`
-  })
+    text: name
+  }))
+  return client.replyMessage(event.replyToken, requests)
 }
