@@ -62,6 +62,7 @@ async function textCheck(event) {
       console.log("first pass ok")
       return true
     });
+  return true
 }
 
 async function repalyNames(event, names) {
