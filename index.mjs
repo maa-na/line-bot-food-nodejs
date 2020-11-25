@@ -24,6 +24,12 @@ async function handleEvent(req, res) {
   const event = req.body.events[0];
 
   console.log('latitude', event.message.latitude)
+  // event.message.latitude + ' : ' + event.message.longitude
+
+  if (event.message.latitude) {
+    console.log('位置情報送られた')
+    console.log('event1つ前の', req.body.events[1].message.text)
+  }
 
   const textCheckRes = await textCheck(event)
   console.log('textCheckRes', textCheckRes)
