@@ -23,6 +23,8 @@ async function handleEvent(req, res) {
   res.status(200).end();
   const event = req.body.events[0];
 
+  console.log('latitude', event.message.latitude)
+
   const textCheckRes = await textCheck(event)
   console.log('textCheckRes', textCheckRes)
 
@@ -54,7 +56,7 @@ async function textCheck(event) {
   }
 
   if (!returnText) return false 
-  
+
   Promise.all(client.replyMessage(event.replyToken, {
     type: "text",
     text: returnText

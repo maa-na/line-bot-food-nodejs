@@ -11,7 +11,6 @@ async function getGourmetSearch() {
     method: "GET",
     json: true
   }
-  console.log(requestOptions)
   return new Promise(function (resolve, reject) {
     request(requestOptions, function (error, res, body) {
       if (!error && res.statusCode == 200) {
@@ -21,24 +20,6 @@ async function getGourmetSearch() {
       }
     });
   });
-  // request(`${GOURMET_SEARCH_API}?key=${process.env.HOTPEPPER_API_KEY}&address=${hoge}`, function (error, response, body) {
-  //   console.log('error', error)
-  //   console.log('response', response)
-  //   if (!error && response.statusCode == 200) {
-  //     console.log(body) // Print the google web page.
-  //   }
-  // })
 };
 
 export { getGourmetSearch };
-
-// async function getGourmetSearch() {
-//   const hoge = '東京都府中市'
-//   request(`${GOURMET_SEARCH_API}?key=${process.env.HOTPEPPER_API_KEY}&address=${hoge}`, function (error, response, body) {
-//     if (!error && response.statusCode == 200) {
-//       console.log(body) // Print the google web page.
-//     }
-//   })
-// }
-
-// module.exports = getGourmetSearch
